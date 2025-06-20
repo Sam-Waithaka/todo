@@ -1,8 +1,10 @@
+import cors from 'cors'
 import express from 'express'
+import dotenv from 'dotenv'
+
+import rateLimit from './middleware/rateLimiter.js'
 import notesRoutes from './routes/notesRoutes.js'
 import {connectDB} from './config/db.js'
-import dotenv from 'dotenv'
-import rateLimit from './middleware/rateLimiter.js'
 
 
 dotenv.config()
@@ -21,8 +23,10 @@ app.use(express.json()) // this will parse json bodies: req.body
     
 // })
 
+app.use(cors({
+    origin: "http://localhost:5173",
+}))
 app.use(rateLimit)
-
 app.use("/api/notes", notesRoutes)
 
 

@@ -9,9 +9,9 @@ export async function getAllNotes (req, res) {
     }
 }
 
-export async function getNotebyId(_, res){
+export async function getNotebyId(req, res){
     try {
-        const { title, content } = req.body;
+        // const { title, content } = req.body;
         const note = await Note.findByIdAndUpdate(
             req.params.id, 
             // { title, content }, 
